@@ -1,7 +1,7 @@
 # Chartzy 📈 
 An Excel add-in for automatically generating charts from tables.
 
-Version: alpha
+Version: 1.0.0 alpha
 
 ## Tools
 - React 
