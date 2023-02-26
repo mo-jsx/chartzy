@@ -8,7 +8,6 @@ Version: 1.0.0 alpha
 - Fluent UI
 - OfficeJS
 - Jest 
-- Cypress
 - Webpack
 
 ----

@@ -45,19 +45,23 @@ export default class App extends React.Component<AppProps, AppState> {
   click = async () => {
     try {
       await Excel.run(async (context) => {
-        /**
-         * Insert your Excel code here
-         */
-        const range = context.workbook.getSelectedRange();
+        //Set env variables
+        const currentWorksheet = context.workbook.worksheets.getActiveWorksheet();
+        const populationTable = currentWorksheet.tables.getItem("PopulationTable");
+        const dataRange = populationTable.getDataBodyRange();
 
-        // Read the range address
-        range.load("address");
+        //Create chart
+        const chart = currentWorksheet.charts.add("ColumnClustered", dataRange, "Auto");
 
-        // Update the fill color
-        range.format.fill.color = "yellow";
-
+        //Set the styles and postion of the chart
+        chart.title.text = "World Population";
+        chart.legend.position = "Top";
+        chart.setPosition("A10", "G20");
+        chart.legend.format.fill.setSolidColor("blue");
+        chart.dataLabels.format.font.size = 16;
+        chart.dataLabels.format.font.color = "black";
+        chart.series.getItemAt(0).name = "Value in Md";
         await context.sync();
-        console.log(`The range address was ${range.address}.`);
       });
     } catch (error) {
       console.error(error);
@@ -82,10 +86,10 @@ export default class App extends React.Component<AppProps, AppState> {
         <Header logo={require("./../../../assets/logo-filled.png")} title={this.props.title} message="Welcome" />
         <HeroList message="Discover what Office Add-ins can do for you today!" items={this.state.listItems}>
           <p className="ms-font-l">
-            Modify the source files, then click <b>Run</b>.
+            Select the source files, then click <b>Run</b>.
           </p>
           <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={this.click}>
-            Run
+            Create Chart
           </DefaultButton>
         </HeroList>
       </div>
