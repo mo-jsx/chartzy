@@ -21,7 +21,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    // "types": ["cypress", "node"]
   },
   "exclude": [
     "node_modules"

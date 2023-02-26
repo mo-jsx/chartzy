@@ -75,7 +75,6 @@
   },
   "prettier": "office-addin-prettier-config",
   "browserslist": [
-    "ie 11",
-    "chromium"
+    "ie 11"
   ]
 }
