@@ -1,4 +1,10 @@
+# Folders
 .vscode/
 node_modules/
+
+# Cypress
 cypress/
 cypress.config.ts
+
+# Tests
+*.test.*
